@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="bckg-body">
+       {# {{ form(receiptForm) }}
+        {{ form(categoryForm) }}#}
+
+        {{ form_row(receiptForm.id) }}
+        {{ form_row(categoryForm.id) }}
+        {{ form_row(receiptForm.name) }}
+        {{ form_row(receiptForm.time_cooking) }}
+        {{ form_row(receiptForm.time_preparation) }}
+        {{ form_row(categoryForm.name) }}
+        {{ form_row(receiptForm.subcategory) }}
+        {{ form_row(receiptForm.save) }}
+
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+
+        });
+
+    </script>
+
+
+
+{% endblock %}

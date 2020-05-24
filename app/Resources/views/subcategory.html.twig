@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="tabs-subcategory-arr">
+        <ul class="tabs">
+            Филтрирай категория:
+            {% for category in subcategory_arr %}
+                <li class="tab-link" data-tab="tab-{{ category.id }}">{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+    </div>
+    {% for category in subcategory_arr %}
+        <div id="tab-{{ category.id }}" class="tab-content">
+            {% for rec in receipts_arr %}
+                {% if category.id == rec.subcategory.id %}
+                <a href="{{ path('receipt', {'id': rec.id }) }}">
+                <div class="receipt-box">
+                    <img class="receipt-img" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/recipe-image-legacy-id-1074500_11.jpg" alt="no pic, sorry :)" >
+                    <div class="receipt-text-external">
+                        <div class="receipt-text">{{rec.name}}</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <script>
+        $(document).ready(function(){
+            $('ul.tabs li').click(function(){
+                var tab_id = $(this).attr('data-tab');
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+                $(this).addClass('current');
+                $("#"+tab_id).addClass('current');
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <title>Cooking ...</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
+    {%  block stylesheets  %}
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/jquery-3.4.1.js') }}"></script>
+    {% endblock %}
+</head>
+
+<body>
+{% block header %}
+    <div class="header">
+        <div class="menu-content">
+            <a href="{{ path('home') }}">
+                <img src="{{ asset('images/menu-home.png') }}" alt="no pic, sorry :)" >
+            </a>
+            <a href="{{ path('products') }}">
+                <img src="{{ asset('images/menu-products.png') }}" alt="no pic, sorry :)" >
+            </a>
+            <a href="{{ path('new_receipt') }}">
+                <img src="{{ asset('images/menu-products.png') }}" alt="no pic, sorry :)" >
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="bckg-body">
+        <div class="bckg-panels">
+            <div class="bckg-panel">
+            {% for category in categories_arr %}
+                {% if category.id % 2 > 0 %}
+                <a href="{{ path('subcategory', {'id': category.id }) }}">
+                    <div class="bckg-menu" style="background-color: {{ category.color }};">
+                        <div class="text-menu"> {{ category.name }} <hr> {{ category.description}} </div>
+                        <img alt="missing picture" src="/images/{{ category.image }}/">
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="bckg-panel">
+            {% for category in categories_arr %}
+                {% if category.id % 2 == 0 %}
+                <a href="{{ path('subcategory', {'id': category.id }) }}">
+                    <div class="bckg-menu" style="background-color: {{ category.color }};">
+                        <div class="text-menu"> {{ category.name }} <hr> {{ category.description}} </div>
+                        <img alt="missing picture" src="/images/{{ category.image }}/">
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+<script>
+    $( ".bckg-menu" ).hover(
+        function(){
+            $(this).css({"width": "140%", "transition": "1.8s"});
+        },
+        function () {
+            $(this).css({"width": "130%", "transition": "1.8s"});
+    });
+
+</script>
+
+</body>
+</html>

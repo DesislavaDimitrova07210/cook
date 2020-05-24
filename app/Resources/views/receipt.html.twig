@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% for receipt in receipt_arr %}
+    [{{ receipt.subcategory.name }}]<br>
+    [{{ receipt.name }}]<br>
+
+    {% for product in receipt.products %}
+        - {{ product.productid.name}} | {{ product.quantity}} | {{ product.unitid.name}}<br>
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

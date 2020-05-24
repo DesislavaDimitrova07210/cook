@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for car in CarArray %}
+
+        {{ car.model() }}
+
+        {% for part  in car.parts %}
+            {{  part.name }}
+        {% endfor %}
+
+        {% for part  in car.parts %}
+            {{  part.name }}
+            {{  part.supplierId.name }}
+        {% endfor %}
+    {% endfor %}
+
+    {{ dump(CarArray) }}
+
+{% endblock %}
